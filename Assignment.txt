@@ -1,0 +1,101 @@
+
+Q1. What is Bayes' theorem?
+
+Bayes' theorem is a fundamental theorem in probability theory that describes the probability of an event, based on prior knowledge of conditions that might be related to the event. It is named after the Reverend Thomas Bayes, who first formulated it. Bayes' theorem provides a way to revise existing beliefs or predictions (prior probabilities) given new evidence or data (posterior probabilities).
+
+Q2. What is the formula for Bayes' theorem?
+
+Bayes' theorem is expressed mathematically as:
+
+\[ P(A | B) = \frac{P(B | A) \cdot P(A)}{P(B)} \]
+
+Where:
+- \( P(A | B) \) is the posterior probability of A given B (the probability of event A occurring given that B is true).
+- \( P(B | A) \) is the likelihood of B given A (the probability of event B occurring given that A is true).
+- \( P(A) \) and \( P(B) \) are the prior probabilities of A and B respecively.
+
+Q3. How is Bayes' theorem used in practice?
+
+Bayes' theorem is used in various fields such as statistics, machine learning, medical diagnosis, and more. In practice, it is applied to update beliefs or predictions based on new evidence or data. Examples include:
+- Spam filters in email: Bayes' theorem helps classify emails as spam or not based on the likelihood of certain words occurring in spam or legitimate emails.
+- Medical diagnosis: Doctors can update the probability of a patient having a disease based on symptoms and test results.
+- Predictive modeling: In machine learning, Bayes' theorem forms the basis of Bayesian methods, which are used for classification, regression, and clustering tasks.
+
+ Q4. What is the relationship between Bayes' theorem and conditional probability?
+
+Bayes' theorem relates conditional probabilities \( P(A | B) \) and \( P(B | A) \). It provides a way to calculate \( P(A | B) \) (the probability of A given B) using \( P(B | A) \) (the probability of B given A) and the prior probabilities \( P(A) \) and \( P(B) \). Essentially, Bayes' theorem allows us to reverse the usual direction of conditional probability calculations.
+
+Q5. How do you choose which type of Naive Bayes classifier to use for any given problem?
+
+There are different types of Naive Bayes classifiers, including Gaussian Naive Bayes, Multinomial Naive Bayes, and Bernoulli Naive Bayes. The choice depends on the nature of the features in your dataset:
+- **Gaussian Naive Bayes**: Assumes that continuous features follow a Gaussian (normal) distribution. It's suitable when your features are continuous.
+- **Multinomial Naive Bayes**: Assumes features follow a multinomial distribution. It's appropriate for features that represent counts or frequencies (like word counts in text classification).
+- **Bernoulli Naive Bayes**: Assumes features are binary (0 or 1), where each feature is independent and follows a Bernoulli distribution. It's used when features are binary-valued.
+
+To choose the right type:
+- Analyze your dataset to understand the nature of your features (continuous, counts, or binary).
+- Choose the Naive Bayes variant that matches the distributional assumptions of your data.
+
+ Q6. Assignment: Naive Bayes Classification
+
+Given the dataset and the features X1 and X2, and assuming equal prior probabilities for classes A and B, let's predict the class for a new instance with features X1 = 3 and X2 = 4.
+
+**Dataset:**
+
+| Class | X1=1 | X1=2 | X1=3 | X2=1 | X2=2 | X2=3 | X2=4 |
+|-------|------|------|------|------|------|------|------|
+| A     | 3    | 3    | 4    | 4    | 3    | 3    | 3    |
+| B     | 2    | 2    | 1    | 2    | 2    | 2    | 3    |
+
+Solution:
+
+1. Calculate Class Probabilities:
+
+   Since prior probabilities are equal for classes A and B (assuming each class has \( P(A) = P(B) = 0.5 \)):
+
+   \( P(A) = 0.5 \)
+
+   \( P(B) = 0.5 \)
+
+2.Calculate Likelihoods using Naive Bayes assumption:
+
+   Naive Bayes assumes independence between features given the class. So, for the new instance (X1=3, X2=4):
+
+   \( P(X1=3 | A) = \frac{4}{10} \) (from the table, Class A, X1=3)
+
+   \( P(X2=4 | A) = \frac{3}{10} \) (from the table, Class A, X2=4)
+
+   \( P(X1=3 | B) = \frac{1}{7} \) (from the table, Class B, X1=3)
+
+   \( P(X2=4 | B) = \frac{3}{7} \) (from the table, Class B, X2=4)
+
+3.Calculate Posterior Probabilities using Bayes' theorem:
+
+   For Class A:
+
+   \( P(A | X1=3, X2=4) \propto P(X1=3 | A) \cdot P(X2=4 | A) \cdot P(A) \)
+
+   \( P(A | X1=3, X2=4) \propto \frac{4}{10} \cdot \frac{3}{10} \cdot 0.5 \)
+
+   \( P(A | X1=3, X2=4) \propto \frac{12}{100} \cdot 0.5 \)
+
+   \( P(A | X1=3, X2=4) = 0.06 \)
+
+   For Class B:
+
+   \( P(B | X1=3, X2=4) \propto P(X1=3 | B) \cdot P(X2=4 | B) \cdot P(B) \)
+
+   \( P(B | X1=3, X2=4) \propto \frac{1}{7} \cdot \frac{3}{7} \cdot 0.5 \)
+
+   \( P(B | X1=3, X2=4) \propto \frac{3}{49} \cdot 0.5 \)
+
+   \( P(B | X1=3, X2=4) = 0.0306 \)
+
+4.Prediction:
+
+   Compare \( P(A | X1=3, X2=4) \) and \( P(B | X1=3, X2=4) \). Since \( P(A | X1=3, X2=4) = 0.06 \) is greater than \( P(B | X1=3, X2=4) = 0.0306 \), Naive Bayes classifier would predict that the new instance with features X1=3 and X2=4 belongs to **Class A**.
+
+Therefore, based on the calculations above, the Naive Bayes classifier would predict the new instance (X1=3, X2=4) to belong to Class A.
+
+
+	
